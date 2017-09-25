@@ -50,19 +50,20 @@
 * 如何回退到父结点。
 
 针对不同的问题场景，上面的问题有不同的解决办法，无法一一给出。不过我们可以抽象地给出所有问题的一般解过程，下面为其递归实现（保存所有的解）：
- 
+    
+    //这个用于计算当前s状态下，继续走是否能走通，走通时把路径添加到结果，然后返回
     void backtrack(state s) {
         if(s is end){           // 当前结点为可行解
-            sols.append(path);  // 保存该解
+            solutions.append(path);  // 保存该解
         }
         else if(s has no ways){ // 当前结点为不可达叶子结点
             return; 
         }
         else{                   // 当前结点为中间结点
             for(i in possible ways){
-                next_s = do i in s; // 选择一条边
-                backtrack(next_s);  // 在选择的边上往下走
-                s = redo i in s;    // 回溯到父结点
+                changge s to next_s //走一步
+                backtrack(next_s);  // 计算这一步之后，是否能走通
+                changge next_s to s  // 回溯到父结点
             }
         }
     }
